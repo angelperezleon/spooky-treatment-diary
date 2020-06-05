@@ -1,0 +1,257 @@
+@charset "UTF-8";
+@import "http://fonts.googleapis.com/css?family=Droid+Serif";
+/* Above line is used for online google font */
+div.container {
+width:1185px;
+height:800px;
+margin:10px auto;
+font-family:'courier';
+text:#464646
+}
+div.top {
+width:1010px;
+height:560px;
+float:top;
+border-radius:20px;
+border:2px solid #990;
+padding:0 60px 30px;
+position:relative
+}
+div.left {
+width:230px;
+height:515px;
+float:left;
+border-radius:20px;
+border:2px solid #990;
+padding:0 60px 30px;
+position:relative
+}
+div.right {
+width:805px;
+height:535px;
+float:right;
+border-radius:20px;
+border:2px solid #990;
+padding:0 10px 10px;
+position:relative
+}
+div.bottom {
+width:1010px;
+height:220px;
+float:bottom;
+border-radius:20px;
+border:2px solid #990;
+padding:0 60px 30px;
+position:relative
+/* position:absolute;
+vertical-align="bottom"
+bottom:20px */
+}
+
+/* Start Pagination buttons */
+ ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 2px 4px;
+    text-decoration: none;
+	transition: background-color .3s;
+	border: 2px solid #ddd;
+	background-color: #990;
+	border-radius: 10px;
+}
+ul.pagination a:hover:not(.active) {
+	border-radius: 10px;
+	background-color: #ddd;
+}
+/* End Pagination buttons */
+
+span {
+color:red;
+font-weight:700;
+display:inline-block;
+margin-bottom:5px
+}
+table {
+ table-layout: auto;
+ width: 1024px; 
+}
+td {
+margin: 0 auto;
+text-align: center;
+font-size:14px;
+}
+th {
+margin:0 -50px;
+border:0;
+border-bottom:1px solid #ccc;
+margin-bottom:25px;
+font-size:14px
+}
+b {
+color:green;
+font-weight:700
+}
+h2 {
+background-color:#faa02d;
+/* 
+background-color:#019fff;
+ */
+padding:10px;
+margin:0 -50px;
+text-align:center;
+border-radius:35px 35px 35px 35px;
+font-weight: bold
+}
+h3 {
+padding:5px;
+margin:0 -50px;
+text-align:center;
+border-radius:5px 5px 0 0;
+font-weight: bold
+}
+h4 {
+padding:2px;
+margin:0 -50px;
+text-align:left;
+border-radius:3px 3px 0 0;
+font-weight: bold
+}
+hr {
+margin:0 -50px;
+border:0;
+border-bottom:1px solid #ccc;
+margin-bottom:25px
+}
+label {
+color:#464646;
+text-shadow:0 1px 0 #fff;
+font-weight:700;
+font-size:12px
+}
+select {
+width:50%;
+overflow:scroll;
+font-family:cursive;
+font-size:16px;
+background:#f5f5f5;
+padding:5px;
+border:1px solid
+}
+/* Hide HTML5 Up and Down arrows. */
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+-webkit-appearance: none;
+width:20%;
+margin: 0;
+}
+/* dont work.
+input[type="number"] {
+-moz-appearance: textfield;
+}
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+} */
+/* Remove controls from Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+  width:20%;
+}
+
+/* Re-applies the controls on :hover and :focus */
+input[type="number"]:hover, input[type="number"]:focus {
+  -moz-appearance: textfield;
+  width:20%;
+}
+
+input[type=date] {
+	-moz-appearance: textfield;
+	width:130px;
+	margin-left:15px;
+	margin-top:10px
+}
+
+input[type=radio] {
+margin-left:15px;
+margin-top:10px
+}
+
+input[type=presetslist] {
+  -moz-appearance: textfield;
+  width:70%;
+  font-family:'courier';
+  text:#464646
+}
+
+input[type=programlist] {
+  -moz-appearance: textfield;  
+  width:70%;
+  font-family:'courier';
+  text:#464646
+}
+
+/* 
+input[type=notes] {
+  -moz-appearance: textfield;
+  width:70%
+}
+ */
+ 
+input[type="notes"], textarea {	
+  font-family:'courier';
+  width:50%;
+  text:#464646
+}
+
+textarea
+{
+  border:1px solid #999999;
+  width:100%;
+  margin:5px 0;
+  width:50%;
+  padding:3px
+}
+
+input[type="method"], checkbox {
+  -moz-appearance: checkbox;
+  font-family:'courier';
+  text:#464646
+}
+
+input[type=submit] {
+padding:10px;
+text-align:center;
+font-size:18px;
+/* 
+background:linear-gradient(#019fe0 5%,#3b8dbf 100%);
+ */
+background:linear-gradient(#2d8afa 5%,#2d5ffa 100%);
+border:2px solid #c5fa2d;
+color:#fff;
+font-weight:700;
+cursor:pointer;
+width:100px;
+border-radius:25px
+}
+
+input[type=submit]:hover {
+background:linear-gradient(#3b8dbf 5%,#019fe0 100%)
+}
+
+ul.nav { text-align: center; }
+/*!
+ * https://www.w3schools.com/css/css3_pagination.asp
+ * Copyright 2011-2016 Twitter, Inc.
+ */
+ 
+ boxsizingBorder {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
