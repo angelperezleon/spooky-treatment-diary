@@ -246,7 +246,10 @@ error_reporting(-1); ini_set('display_errors', '1');
 		if(isset($_POST["submit"])) {
 		{ 
 			// Retrieving each selected option 
-			foreach ($_POST['programlist'] as $programlist) { 
+			foreach ($_POST['programlist'] as $programlist) {
+				// fix by Nomiko #web irc.freenode.net
+				// submit multiple checkbox selections
+				$method = join(', ', $_POST['method']);
 				$sql = "INSERT INTO `$dbname`.`$table` (`date`,`recipient`,`preset`,`programs`,`settings`,`method`,`notes`) VALUES ('$datetime', '$recipient', '$presetslist', '$programlist', '$settings', '$method', '$notes')";
 			}
 		}
