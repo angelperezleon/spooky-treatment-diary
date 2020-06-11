@@ -1,28 +1,7 @@
-<?php
-require_once 'dbconn.php';
-error_reporting(E_ALL & ~E_NOTICE);
-?>
-
-<!DOCTYPE html>
-<!--
-	Spooky2 Treatment Diary
-	https://www.angelperezleon.com/spooky2
--->
-<html>
-<head>
-	<meta charset="UTF-8">
-	<title>Spooky2 Treatment Diary - Spooky2 Program lists</title>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<meta charset="UTF-8">
-		<!-- -->
-	<link href="style3.css" rel="stylesheet">		
-	</head>
-	<body>
-	
 <!--  START - Display selected programlist BLOCK
 
 	<form method="post" accept-charset="utf-8" size="50">
-	<!-- Read  -->
+	Read  -->
 	<select name='programlist[]' size="1" id="formFoods" required>
 <?php
 	//header("Content-Type:text/html; charset=utf-8");
@@ -74,6 +53,3 @@ error_reporting(E_ALL & ~E_NOTICE);
 	// Start - Display selected programlist
 ?>
 END - Display selected programlist BLOCK -->
-
-</body>
-</html>

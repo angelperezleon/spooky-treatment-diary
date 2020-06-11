@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <!-- Info -->
 <!-- 
 Author: Angel Perez-Leon
@@ -35,7 +37,7 @@ error_reporting(-1); ini_set('display_errors', '1');
 		
 		<!-- Date example: 11-04-2019 17:20:22 -->
 		<h4>Date:
-		<input type="date" value="<?php echo date('d-m-Y H:i:s'); ?>" /  name="dateFrom[]" required>
+		<input type="date" value="<?php echo date('d-m-Y H:i:s'); ?>" name="dateFrom[]" required>
 		</h4>
 		<h4>Recipient:
 		<input type = 'text' class = 'text' maxlength = '21'  placeholder = 'Jass' name="recipient[]" required>
@@ -62,23 +64,23 @@ error_reporting(-1); ini_set('display_errors', '1');
 		</h4>
 		<!-- Create new entry into Spooky2 Program list from DB -->
 		<a href="insert-programs.php">Create new Program(s)</a> 
-		<br></br>
+		<br><br>
 		
 		<h4>Settings:
 		<!-- 
 		<input type = 'text' pattern="^[a-zA-Z0-9\.$%&#]*$" class = 'text' maxlength = '30' placeholder = '0.02% feathering' name = 'settings[]' required>
 		 -->
-		<input type = 'text' pattern="[^->]+" class = 'text' maxlength = '30' placeholder = '0.02% feathering' name = 'settings[]'required>
+		<input type = 'text' pattern="[^->]+" class = 'text' maxlength = '30' placeholder = '0.02% feathering' name = 'settings[]' required>
 		</h4>
 		
 		<h4>Equipment used:
-        <input type="checkbox" value="GeneratorX" name="method[]" checked />GeneratorX</input>
-        <input type="checkbox" value="Spooky Central" name="method[]">Spooky Central</input>
-        <input type="checkbox" value="Plasma straight tube" name="method[]">Plasma Straight tube</input>
-		<input type="checkbox" value="Plasma phonatron tube" name="method[]">Plasma Phonatron tube</input>
-        <input type="checkbox" value="Coil" name="method[]">Coil</input>
-        <input type="checkbox" value="TEN's pads" name="method[]">TEN's pads</input>
-        <input type="checkbox" value="Ultra Sound" name="method[]">Ultra Sound</input>
+        <input type="checkbox" value="GeneratorX" name="method[]" checked>GeneratorX
+        <input type="checkbox" value="Spooky Central" name="method[]">Spooky Central
+        <input type="checkbox" value="Plasma straight tube" name="method[]">Plasma Straight tube
+		<input type="checkbox" value="Plasma phonatron tube" name="method[]">Plasma Phonatron tube
+        <input type="checkbox" value="Coil" name="method[]">Coil
+        <input type="checkbox" value="TEN's pads" name="method[]">TEN's pads
+        <input type="checkbox" value="Ultra Sound" name="method[]">Ultra Sound
         </h4>
 
 		<!-- Notes  -->
@@ -255,6 +257,7 @@ error_reporting(-1); ini_set('display_errors', '1');
 	<?php
 	include 'query-show.php';
 	?>
+	</div>
 	</div>
 
 	</body> 

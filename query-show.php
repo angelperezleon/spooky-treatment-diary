@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Spooky2 Treatment Diary</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta charset="UTF-8">
-<!-- Include CSS File Here -->
-<link href="style3.css" rel="stylesheet">
-</head>
-<body>
 <?php
 	
 	error_reporting(E_ALL & ~E_NOTICE);
@@ -89,13 +79,13 @@
    <tr>
      <td width="10">
     <ul class="pagination">
-		<li><a href="?pageno=<?php echo $total_pages; ?>"><<</a></li>
+		<li><a href="?pageno=<?php echo $total_pages; ?>">&lt;&lt;</a></li>
 		 </ul>
 		</td>
             <td width="10">
 			<ul class="pagination">
         <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-            <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>"><</a>
+            <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">&lt;</a>
         </li>
 		</ul>		
 		</td>
@@ -104,17 +94,15 @@
             <td width="10">
 			<ul class="pagination">
         <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-            <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">></a>
+            <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">&gt;</a>
         </li>
 		 </ul>
 		</td>
             <td width="10">
 			<ul class="pagination">
-		<li><a href="?pageno=1">>></a></li>
+		<li><a href="?pageno=1">&gt;&gt;</a></li>
     </ul>
 	   </td>
     </tr>
 </table>
 
-	</body> 
-</html>
