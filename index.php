@@ -8,9 +8,9 @@ Git page: https://github.com/angelperezleon/spooky-treatment-diary
 Credits: In the code below
  -->
 <?php
-require_once 'dbconn.php';
-error_reporting(E_ALL & ~E_NOTICE);
-error_reporting(-1); ini_set('display_errors', '1');
+require_once 'dbconn.inc.php';
+error_reporting(-1);
+ini_set('display_errors', '1'); // you can set this to 0 when it goes to production. PHP errors will still be logged, but not show up in the browser.
 ?>
 
 <html>
@@ -37,7 +37,9 @@ error_reporting(-1); ini_set('display_errors', '1');
 		
 		<!-- Date example: 11-04-2019 17:20:22 -->
 		<h4>Date:
-		<input type="date" value="<?php echo date('d-m-Y H:i:s'); ?>" name="dateFrom[]" required>
+        <!-- an input type for datetime can be found here <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local> 
+             but is not yet widely supported. -->
+		<input type="date" value="<?php echo date('Y-m-d'); ?>" name="dateFrom[]" required>
 		</h4>
 		<h4>Recipient:
 		<input type = 'text' class = 'text' maxlength = '21'  placeholder = 'Jass' name="recipient[]" required>
@@ -46,8 +48,7 @@ error_reporting(-1); ini_set('display_errors', '1');
 		<h4>Select preset:
 		<!-- START Render entire Spooky2 Preset list from DB -->
 		<?php
-		include 'dbconn.php';
-		include 'select-preset.php';
+		require_once 'select-preset.inc.php';
 		?>
 		<!-- END Render entire Spooky2 Preset list from DB -->
 		</h4>
@@ -57,8 +58,7 @@ error_reporting(-1); ini_set('display_errors', '1');
 		<h4>Select programs:
 		<!-- START Render entire Spooky2 Program list from DB -->
 		<?php
-		include 'dbconn.php';
-		include 'select-program.php';
+		require_once 'select-program.inc.php';
 		?>
 		<!-- END Render entire Spooky2 Program list from DB -->
 		</h4>
@@ -97,9 +97,9 @@ error_reporting(-1); ini_set('display_errors', '1');
 
 <?php
 	// Error reporting
-	error_reporting(E_ALL);
+    // error_reporting(E_ALL);
 	//error_reporting(-1);
-	error_reporting(-1); ini_set('display_errors', '1');
+	// error_reporting(-1); ini_set('display_errors', '1');
 	
 	// header("Content-Type:text/html; charset=utf-8");
 	//Calculate Date & time
@@ -111,10 +111,7 @@ error_reporting(-1); ini_set('display_errors', '1');
     // $time = date("H:i:s", strtotime("+2 hours"));
 	$datetime = $date;
 	
-	//MySQL Database Connect 
-	include 'dbconn.php';	
-	
-		// Check if date form is submitted successfully 
+	// Check if date form is submitted successfully 
 	if(isset($_POST["submit"])) 
 	{ 
 		// Check if any option is selected 
@@ -216,17 +213,6 @@ error_reporting(-1); ini_set('display_errors', '1');
 		print "<br/>&nbsp; <font color=red>Add a note !!</font>"; 
 	}
 	
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Fix by Marco Gasi special chars been displayed
-	// https://www.experts-exchange.com/questions/28967328/mysql-question-mysql-query-SET-NAMES-'utf8'.html
-	$conn->set_charset("utf8mb4");
-	
-	// Check connection
-	if ($conn->connect_error) {
-		die("Connection failed: " . $conn->connect_error);
-}
-
 	// Now post entries also into DB
 		if(isset($_POST["submit"])) {
 		{ 
@@ -247,15 +233,13 @@ error_reporting(-1); ini_set('display_errors', '1');
 			print "Error: " . $sql . "<br/>Record not inserted!<br/>" . $conn->error;
 		}
 	}
-	
-	$conn->close();	
 ?>
 	</form>
 	</div>
 	
 	<div class="bottom">
 	<?php
-	include 'query-show.php';
+	require_once 'query-show.inc.php';
 	?>
 	</div>
 	</div>
