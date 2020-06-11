@@ -35,7 +35,7 @@ error_reporting(-1); ini_set('display_errors', '1');
 		
 		<!-- Date example: 11-04-2019 17:20:22 -->
 		<h4>Date:
-		<input type="date" value="<?php echo date('d-m-Y H:i:s'); ?>" /  name="dateFrom" required>
+		<input type="date" value="<?php echo date('d-m-Y H:i:s'); ?>" /  name="dateFrom[]" required>
 		</h4>
 		<h4>Recipient:
 		<input type = 'text' class = 'text' maxlength = '21'  placeholder = 'Jass' name="recipient[]" required>
@@ -105,9 +105,9 @@ error_reporting(-1); ini_set('display_errors', '1');
 	//$date = date('d-m-Y', strtotime($_POST['dateFrom']));	
 	//$date = date('d-m-Y').date("H:i:s", strtotime("+2 hours"));
 	//$time = date("h:ia");
-	$date = date('d-m-Y');
-	$time = date("H:i:s", strtotime("+2 hours"));
-	$datetime = $date  . " " . $time;
+	$date = date('Y-m-d');
+    // $time = date("H:i:s", strtotime("+2 hours"));
+	$datetime = $date;
 	
 	//MySQL Database Connect 
 	include 'dbconn.php';	
@@ -116,13 +116,13 @@ error_reporting(-1); ini_set('display_errors', '1');
 	if(isset($_POST["submit"])) 
 	{ 
 		// Check if any option is selected 
-		if(isset($_POST["datetime"])) 
+		if(isset($_POST["dateFrom"])) 
 		// https://www.zen-cart.com/showthread.php?204417-PHP-Warning-Invalid-argument-supplied-for-foreach()-in-update_product-php-on-line-2
 		//if(isset($_POST["dateFrom"])) && is_array($_POST['dateFrom'))
 		{ 
 			// Retrieving each selected option 
 			//foreach ($_POST['dateFrom'] as $datetime)
-			foreach ($_POST['datetime'] as $datetime)
+			foreach ($_POST['dateFrom'] as $datetime)
 				print "<br/>&nbsp; a date of <b/>$datetime</b/> &#124;"; 
 		} 
 	else
@@ -194,7 +194,6 @@ error_reporting(-1); ini_set('display_errors', '1');
 		{ 
 			// Retrieving each selected option 
 			foreach ($_POST['method'] as $method)
-			(var_export($_POST['method'])
 				print "<br/>&nbsp; Method used: <b/>$method</b/>"; 
 		} 
 	else
