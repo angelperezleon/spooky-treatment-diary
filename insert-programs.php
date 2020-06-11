@@ -1,8 +1,7 @@
 <?php
-require_once 'dbconn.php';
+require_once 'dbconn.inc.php';
 error_reporting(E_ALL & ~E_NOTICE);
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,9 +23,11 @@ error_reporting(E_ALL & ~E_NOTICE);
 		<a href="./">Return home</a> 
 		
 		<!-- old select menu below
-		<form method = 'post'>		
-		<!----- Select Option Fields Starts Here ----->
-		<!-- old select menu above -->		
+		
+		<form method = 'post'>
+		 Select Option Fields Starts Here
+		
+		old select menu above -->
 
 	<form method = 'post' accept-charset = 'utf-8'>	
 
@@ -38,14 +39,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 		
 <?php 
 
-	//MySQL Database Connect 
-	include 'dbconn.php';
-	
-	// Error reporting
-	error_reporting(E_ALL);
-	error_reporting(-1);
-	
-	// Check if Program field is submitted successfully 
+// Check if Program field is submitted successfully 
 	if(isset($_POST["submit"])) 
 	{
 		// Check if any option is selected 
@@ -58,19 +52,6 @@ error_reporting(E_ALL & ~E_NOTICE);
 	else
 		print "<br/>Select an option first !!"; 
 	}
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname);
-	// Check connection
-	if ($conn->connect_error) {
-		die("<br/>Connection failed: " . $conn->connect_error);
-	}
-	/* change character set to utf8 */
-	if (!$conn->set_charset("utf8")) {
-		printf("<br/>Error loading character set utf8: %s\n", $conn->error);
-	} else {
-		printf("<br/>Current character set: %s\n", $conn->character_set_name());
-	}
-
 	// Now post entries also into DB
 		if(isset($_POST["submit"])) {
 		{ 
@@ -89,15 +70,15 @@ error_reporting(E_ALL & ~E_NOTICE);
 		}
 	}
 	
-	$conn->close();	
 ?>
 		</form>
 	</div>
 	
 	<div class="right">
 	<?php
-	include 'select-program.php';
+	include 'select-program.inc.php';
 	?>
+	</div>
 	</div>
 	
 	</body> 
