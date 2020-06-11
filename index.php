@@ -80,21 +80,7 @@ error_reporting(-1); ini_set('display_errors', '1');
         <input type="checkbox" value="TEN's pads" name="method[]">TEN's pads</input>
         <input type="checkbox" value="Ultra Sound" name="method[]">Ultra Sound</input>
         </h4>
-		
-		<!-- dont work
-		<select multiple="multiple" style="height: 24pt" size="10" autocomplete="off" name="equipment[]" required>
-		
-		<select multiple="multiple" size="1" autocomplete="off" name="equipment[]" required>
-			<option value="#">GeneratorX</option>
-			<option value="#">Spooky Central</option>
-			<option value="#">Plasma straight tub</option>
-			<option value="#">Plasma phonatron tube</option>
-			<option value="#">Coil</option>
-			<option value="#">TEN's pads</option>
-			<option value="#">Ultra Sound</option>
-		</select>
-         -->
-		 
+
 		<!-- Notes  -->
 		<h4>Notes:
 		<!-- START
@@ -124,9 +110,7 @@ error_reporting(-1); ini_set('display_errors', '1');
 	$datetime = $date  . " " . $time;
 	
 	//MySQL Database Connect 
-	include 'dbconn.php';
-	
-
+	include 'dbconn.php';	
 	
 		// Check if date form is submitted successfully 
 	if(isset($_POST["submit"])) 
