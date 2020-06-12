@@ -7,4 +7,4 @@ Spooky2 Treatment Plan/Diary showing treatment done on patients/recipients
 - [ ] sum total
 - [ ] search functionality including notes
 - [ ] database schema and data structure upgrade on version upgrades
-- [ ] fix hypanated text php/mysql error in Notes and other select inputs been outputed
+- [ ] fix hyphenated text php/mysql error in Notes and other select inputs been outputed
