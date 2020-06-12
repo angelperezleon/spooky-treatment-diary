@@ -74,25 +74,24 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 		</h4>
 		
 		<h4>Equipment used:
-        <input type="checkbox" value="GeneratorX" name="method[]" checked>GeneratorX
-        <input type="checkbox" value="Spooky Central" name="method[]">Spooky Central
-        <input type="checkbox" value="Plasma straight tube" name="method[]">Plasma Straight tube
-		<input type="checkbox" value="Plasma phonatron tube" name="method[]">Plasma Phonatron tube
-        <input type="checkbox" value="Coil" name="method[]">Coil
-        <input type="checkbox" value="TEN's pads" name="method[]">TEN's pads
-        <input type="checkbox" value="Ultra Sound" name="method[]">Ultra Sound
-        </h4>
-
+		<label><input type="checkbox" value="GeneratorX" name="methods[]" checked>GeneratorX</label>
+		<label><input type="checkbox" value="Spooky Central" name="methods[]">Spooky Central</label>
+		<label><input type="checkbox" value="Plasma straight tube" name="methods[]">Plasma Straight tube</label>
+		<label><input type="checkbox" value="Plasma phonatron tube" name="methods[]">Plasma Phonatron tube</label>
+		<label><input type="checkbox" value="Coil" name="methods[]">Coil</label>
+		<label><input type="checkbox" value="TEN's pads" name="methods[]">TEN's pads</label>
+		<label><input type="checkbox" value="Ultra Sound" name="methods[]">Ultra Sound</label>
+		</h4>
 		<!-- Notes  -->
 		<h4>Notes:
 		<!-- START
 		<input type = 'notes' class = 'text' maxlength = '100' placeholder = 'Treatment notes' name = 'notes[]'>
 		END  -->
-		<textarea class = 'textarea' cols="3" rows="3" placeholder = 'Treatment notes' name="notes"></textarea> 
+		<textarea class = 'textarea' cols="3" rows="3" placeholder = 'Treatment notes' name="notes"></textarea>
 		<!-- Textarea (Multiline) -->
 		</h4>
 		
-		<!-- Submit to db -->		
+		<!-- Submit to db -->
 		<input type = 'submit' name = 'submit' value = Submit>
 
 <?php
@@ -164,18 +163,18 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 		}
 		
 		// Check if method is submitted successfully
-		if (isset($_POST["method"])) {
-			$method = join(', ', $_POST['method']);
-			print "<br>&nbsp; Method(s) used: <b>$method</b>";
+		if (isset($_POST["methods"])) {
+			$methods = join(', ', $_POST['methods']);
+			print "<br>&nbsp; Equipment used: <b>$methods</b>";
 		} else {
 			$submit_errors = true;
-			print "<br>&nbsp; <font color=red>Select Method used !!</font>";
+			print "<br>&nbsp; <font color=red>Select equipment used !!</font>";
 		}
 		
 		// Check if notes field is submitted successfully
 		if (isset($_POST["notes"])) {
 			$notes = $_POST["notes"];
-			print "<br>&nbsp; Treatments notes: <b>$notes</b>";
+			print "<br>&nbsp; Treatments notes: <b>".nl2br($notes)."</b>";
 		} else {
 			$submit_errors = true;
 			print "<br>&nbsp; <font color=red>Add a note !!</font>";
@@ -183,8 +182,15 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 		
 		// the form was submitted, if there are no errors store the entries into the database
 		if (! $submit_errors) {
-			// Retrieving each selected option
-			$sql = "INSERT INTO `$dbname`.`$table` (`date`,`recipient`,`preset`,`programs`,`settings`,`method`,`notes`) VALUES ('$datetime', '$recipient', '$presetslist', '$programlist', '$settings', '$method', '$notes')";
+			// make sure _each_ field that comes from the browser is properly escaped before making it part of the SQL query
+			$date      = $conn->real_escape_string($date);
+			$recipient = $conn->real_escape_string($recipient);
+			$preset    = $conn->real_escape_string($preset);
+			$programs  = $conn->real_escape_string($programs);
+			$settings  = $conn->real_escape_string($settings);
+			$methods   = $conn->real_escape_string($methods);
+			$notes     = $conn->real_escape_string($notes);
+			$sql = "INSERT INTO `$dbname`.`$table` (`date`,`recipient`,`preset`,`programs`,`settings`,`method`,`notes`) VALUES ('$datetime', '$recipient', '$presetslist', '$programlist', '$settings', '$methods', '$notes')";
 			// Check the results and print the appropriate message.
 			if ($conn->query($sql) === TRUE) {
 				// echo "New record created successfully";
@@ -193,6 +199,8 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 				//echo "Error: " . $sql . "<br>Record not inserted!" . $conn->error;
 				print "Error: " . $sql . "<br>Record not inserted!<br>" . $conn->error;
 			}
+		} else {
+			print "Error: some fields were not filled in correctly, please correct these and try again.";
 		}
 	}
 	
