@@ -8,3 +8,6 @@ Spooky2 Treatment Plan/Diary showing treatment done on patients/recipients
 - [ ] search functionality including notes
 - [ ] database schema and data structure upgrade on version upgrades
 - [ ] fix hyphenated text php/mysql error in Notes and other select inputs been outputed
+- [ ] ported as an app
+- [ ] fixing code every :)
+- [ ] fix awful design style some day too
