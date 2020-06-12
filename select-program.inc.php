@@ -2,7 +2,7 @@
 
 	<form method="post" accept-charset="utf-8" size="50">
 	Read  -->
-	<select name='programlist[]' size="1" id="formFoods" required>
+	<select name='programlist' size="1" id="formFoods" required>
 <?php
 	//header("Content-Type:text/html; charset=utf-8");
 	 //header("Content-Type: text/html;charset=UTF-8");

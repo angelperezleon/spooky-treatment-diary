@@ -39,10 +39,10 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 		<h4>Date:
         <!-- an input type for datetime can be found here <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local> 
              but is not yet widely supported. -->
-		<input type="date" value="<?php echo date('Y-m-d'); ?>" name="dateFrom[]" required>
+		<input type="date" value="<?php echo date('Y-m-d'); ?>" name="dateFrom" required>
 		</h4>
 		<h4>Recipient:
-		<input type = 'text' class = 'text' maxlength = '21'  placeholder = 'Jass' name="recipient[]" required>
+		<input type = 'text' class = 'text' maxlength = '21'  placeholder = 'Jass' name="recipient" required>
 		</h4>
 		
 		<h4>Select preset:
@@ -68,9 +68,9 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 		
 		<h4>Settings:
 		<!-- 
-		<input type = 'text' pattern="^[a-zA-Z0-9\.$%&#]*$" class = 'text' maxlength = '30' placeholder = '0.02% feathering' name = 'settings[]' required>
+		<input type = 'text' pattern="^[a-zA-Z0-9\.$%&#]*$" class = 'text' maxlength = '30' placeholder = '0.02% feathering' name = 'settings' required>
 		 -->
-		<input type = 'text' pattern="[^->]+" class = 'text' maxlength = '30' placeholder = '0.02% feathering' name = 'settings[]' required>
+		<input type = 'text' pattern="[^->]+" class = 'text' maxlength = '30' placeholder = '0.02% feathering' name = 'settings' required>
 		</h4>
 		
 		<h4>Equipment used:
@@ -88,7 +88,7 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 		<!-- START
 		<input type = 'notes' class = 'text' maxlength = '100' placeholder = 'Treatment notes' name = 'notes[]'>
 		END  -->
-		<textarea class = 'textarea' cols="3" rows="3" placeholder = 'Treatment notes' name="notes[]"></textarea> 
+		<textarea class = 'textarea' cols="3" rows="3" placeholder = 'Treatment notes' name="notes"></textarea> 
 		<!-- Textarea (Multiline) -->
 		</h4>
 		
@@ -111,128 +111,91 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
     // $time = date("H:i:s", strtotime("+2 hours"));
 	$datetime = $date;
 	
-	// Check if date form is submitted successfully 
-	if(isset($_POST["submit"])) 
-	{ 
-		// Check if any option is selected 
-		if(isset($_POST["dateFrom"])) 
-		// https://www.zen-cart.com/showthread.php?204417-PHP-Warning-Invalid-argument-supplied-for-foreach()-in-update_product-php-on-line-2
-		//if(isset($_POST["dateFrom"])) && is_array($_POST['dateFrom'))
-		{ 
-			// Retrieving each selected option 
-			//foreach ($_POST['dateFrom'] as $datetime)
-			foreach ($_POST['dateFrom'] as $datetime)
-				print "<br/>&nbsp; a date of <b/>$datetime</b/> &#124;"; 
-		} 
-	else
-		print "<br/>&nbsp; <font color=red>Select a date first !!</font> &#124;"; 
-	}
 	
-		// Check if recipient form is submitted successfully 
-	if(isset($_POST["submit"])) 
-	{ 
-		// Check if any option is selected 
-		if(isset($_POST["recipient"]))
-		{ 
-			// Retrieving each selected option 
-			foreach ($_POST['recipient'] as $recipient) 
-				print "&nbsp; Treatment for <b/>$recipient</b/>"; 
-		} 
-	else
-		print "&nbsp; <font color=red>Who is the treatment for ?</font>"; 
-	}
-	
-	// Check if Preset list is submitted successfully 
-	if(isset($_POST["submit"])) 
-	{ 
-		// Check if any option is selected 
-		if(isset($_POST["presetslist"])) 
-		{ 
-			// Retrieving each selected option 
-			foreach ($_POST['presetslist'] as $presetslist) 
-				print "<br/>&nbsp; Preset(s) is: <b/>$presetslist</b/> &#124;"; 
-		} 
-	else
-		print "<br/>&nbsp; <font color=red>Select a Preset(s) from the list first!!</font> &#124;"; 
-	}
-	
-	// Check if Program list is submitted successfully 
-	if(isset($_POST["submit"])) 
-	{ 
-		// Check if any option is selected 
-		if(isset($_POST["programlist"])) 
-		{ 
-			// Retrieving each selected option 
-			foreach ($_POST['programlist'] as $programlist) 
-				print "&nbsp; Program(s) is: <b/>$programlist</b/>"; 
-		} 
-	else
-		print "&nbsp; <font color=red>Select a Program(s) from the list first!!</font>"; 
-	}
-	
-	// Check if settings field is submitted successfully 
-	if(isset($_POST["submit"])) 
-	{ 
-		// Check if any option is selected 
-		if(isset($_POST["settings"])) 
-		{ 
-			// Retrieving each selected option 
-			foreach ($_POST['settings'] as $settings) 
-				print "<br/>&nbsp; Settings of: <b/>$settings</b/>"; 
-		} 
-	else
-		print "<br/>&nbsp; <font color=red>Set a settings first !!</font>"; 
-	}
-	
+	// Check if form is submitted.
+	// if it is, check all the inputs, and if they are all ok, store the data in the database
+	if (isset($_POST["submit"])) {
 		
-	// Check if method field is submitted successfully 
-	if(isset($_POST["submit"])) 
-	{ 
-		// Check if any option is selected 
-		if(isset($_POST["method"])) 
-		{ 
-			// Retrieving each selected option 
-			foreach ($_POST['method'] as $method)
-				print "<br/>&nbsp; Method used: <b/>$method</b/>"; 
-		} 
-	else
-		print "<br/>&nbsp; <font color=red>Select Method used !!</font>"; 
-	}
+		$submit_errors = false; // by default the form has not been submitted.
 		
-	// Check if Notes field is submitted successfully 
-	if(isset($_POST["submit"])) 
-	{ 
-		// Check if any option is selected 
-		if(isset($_POST["notes"])) 
-		{ 
-			// Retrieving each selected option 
-			foreach ($_POST['notes'] as $notes) 
-				print "<br/>&nbsp; Treatments notes: <b/>$notes</b/>"; 
-		} 
-	else
-		print "<br/>&nbsp; <font color=red>Add a note !!</font>"; 
-	}
+		// Check if date is submitted successfully 
+		if (isset($_POST["dateFrom"])) {
+			$dateFrom = $_POST["dateFrom"];
+			print "<br>&nbsp; a date of <b>$dateFrom</b> &#124;";
+		} else {
+			$submit_errors = true;
+			print "<br>&nbsp; <font color=red>Select a date first !!</font> &#124;";
+		}
+		
+		// Check if recipient is submitted successfully
+		if (isset($_POST["recipient"])) {
+			$recipient = $_POST["recipient"];
+			print "&nbsp; Treatment for <b>$recipient</b>";
+		} else {
+			$submit_errors = true;
+			print "&nbsp; <font color=red>Who is the treatment for ?</font>";
+		}
 	
-	// Now post entries also into DB
-		if(isset($_POST["submit"])) {
-		{ 
-			// Retrieving each selected option 
-			foreach ($_POST['programlist'] as $programlist) {
-				// fix by Nomiko #web irc.freenode.net
-				// submit multiple checkbox selections
-				$method = join(', ', $_POST['method']);
-				$sql = "INSERT INTO `$dbname`.`$table` (`date`,`recipient`,`preset`,`programs`,`settings`,`method`,`notes`) VALUES ('$datetime', '$recipient', '$presetslist', '$programlist', '$settings', '$method', '$notes')";
+		// Check if presetslist is submitted successfully
+		if (isset($_POST["presetslist"])) {
+			$presetslist = $_POST["presetslist"];
+			print "<br>&nbsp; Preset(s) is: <b>$presetslist</b> &#124;"; 
+		} else{
+			$submit_errors = true;
+			print "<br>&nbsp; <font color=red>Select a Preset(s) from the list first!!</font> &#124;";
+		}
+		
+		// Check if programlist is submitted successfully
+		if (isset($_POST["programlist"])) {
+			$programlist = $_POST["programlist"];
+			print "&nbsp; Program(s) is: <b>$programlist</b>";
+		} else{
+			$submit_errors = true;
+			print "&nbsp; <font color=red>Select a Program(s) from the list first!!</font>";
+		}
+		
+		// Check if settings is submitted successfully
+		if (isset($_POST["settings"])) {
+			$settings = $_POST["settings"];
+			print "<br>&nbsp; Settings of: <b>$settings</b>";
+		} else {
+			$submit_errors = true;
+			print "<br>&nbsp; <font color=red>Set a settings first !!</font>";
+		}
+		
+		// Check if method is submitted successfully
+		if (isset($_POST["method"])) {
+			$method = join(', ', $_POST['method']);
+			print "<br>&nbsp; Method(s) used: <b>$method</b>";
+		} else {
+			$submit_errors = true;
+			print "<br>&nbsp; <font color=red>Select Method used !!</font>";
+		}
+		
+		// Check if notes field is submitted successfully
+		if (isset($_POST["notes"])) {
+			$notes = $_POST["notes"];
+			print "<br>&nbsp; Treatments notes: <b>$notes</b>";
+		} else {
+			$submit_errors = true;
+			print "<br>&nbsp; <font color=red>Add a note !!</font>";
+		}
+		
+		// the form was submitted, if there are no errors store the entries into the database
+		if (! $submit_errors) {
+			// Retrieving each selected option
+			$sql = "INSERT INTO `$dbname`.`$table` (`date`,`recipient`,`preset`,`programs`,`settings`,`method`,`notes`) VALUES ('$datetime', '$recipient', '$presetslist', '$programlist', '$settings', '$method', '$notes')";
+			// Check the results and print the appropriate message.
+			if ($conn->query($sql) === TRUE) {
+				// echo "New record created successfully";
+				print "<br><br>Record successfully inserted!<br>";
+			} else {
+				//echo "Error: " . $sql . "<br>Record not inserted!" . $conn->error;
+				print "Error: " . $sql . "<br>Record not inserted!<br>" . $conn->error;
 			}
 		}
-		// Check the results and print the appropriate message.
-		if ($conn->query($sql) === TRUE) {
-			// echo "New record created successfully";
-			print "<br/><br/>Record successfully inserted!<br/>";
-		} else {
-			//echo "Error: " . $sql . "<br>Record not inserted!" . $conn->error;
-			print "Error: " . $sql . "<br/>Record not inserted!<br/>" . $conn->error;
-		}
 	}
+	
 ?>
 	</form>
 	</div>
@@ -244,5 +207,5 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 	</div>
 	</div>
 
-	</body> 
+	</body>
 </html>

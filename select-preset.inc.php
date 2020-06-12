@@ -2,7 +2,7 @@
 
 	<form method="post" accept-charset="utf-8" size="50">
 	Read  -->
-	<select name='presetslist[]' size="1" id="formFoods" required>
+	<select name='presetslist' size="1" id="formFoods" required>
 <?php
 
 	// Start - Display Spooky2 Program list from DB
