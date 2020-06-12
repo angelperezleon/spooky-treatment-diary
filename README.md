@@ -2,7 +2,7 @@
 Spooky2 Treatment Plan/Diary showing treatment done on patients/recipients
 
 **Todo**
-- [x] Finish my changes
+- [x] create this todo list
 - [ ] implement bfb csv import & file attach function
 - [ ] sum total
 - [ ] search functionality including notes
