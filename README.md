@@ -11,3 +11,5 @@ Spooky2 Treatment Plan/Diary showing treatment done on patients/recipients
 - [ ] ported as an app
 - [ ] fixing code every :)
 - [ ] fix awful design style some day too
+- [ ] ability to select more than one program or preset at one time
+- [ ] future dev of replacing preset/program drop downs with a autofill box that allows multiple entries
