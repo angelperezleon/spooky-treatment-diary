@@ -1,5 +1,5 @@
 # spooky-treatment-diary
-Spooky2 Treatment Plan/Diary showing treatment done on patients/recipients
+Spooky2 Treatment Diary allowing the ability to show what treatments have been done on patients/recipients.
 
 **Todo**
 - [x] create this todo list
