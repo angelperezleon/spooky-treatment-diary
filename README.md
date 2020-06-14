@@ -3,6 +3,7 @@ Spooky2 Treatment Diary allowing the ability to show what treatments have been d
 
 **Todo**
 - [x] create this todo list
+- [ ] colour highlighting of continuous running programs/presets.
 - [ ] implement bfb csv import & file attach function
 - [ ] sum total
 - [ ] search functionality including notes
@@ -13,3 +14,4 @@ Spooky2 Treatment Diary allowing the ability to show what treatments have been d
 - [ ] fix awful design style some day too
 - [ ] ability to select more than one program or preset at one time
 - [ ] future dev of replacing preset/program drop downs with a autofill box that allows multiple entries
+- [ ] Preset chain creator/selector, to group together programs into one.
