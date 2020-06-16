@@ -11,7 +11,7 @@ error_reporting(E_ALL & ~E_NOTICE);
 <!-- Mobile friendly-->
 <meta name="viewport" content="width=320, initial-scale=1">
 <!-- Include CSS File Here-->
-<link href="style3.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
 </head>
 
 <body>
