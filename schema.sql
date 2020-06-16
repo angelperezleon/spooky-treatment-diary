@@ -1,6 +1,6 @@
 CREATE TABLE `diary` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `date` date NOT NULL DEFAULT '0000-00-00',
+  `date` varchar(20) NOT NULL COMMENT 'dd.mm.yyyy hr:min:ss',
   `recipient` varchar(120) NOT NULL,
   `preset` varchar(100) NOT NULL,
   `programs` varchar(100) NOT NULL,
