@@ -75,6 +75,10 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 		
 		<h4>Equipment used:
 		<label><input type="checkbox" value="GeneratorX" name="methods[]" checked>GeneratorX</label>
+		<label><input type="checkbox" value="XM-Generator" name="methods[]" checked>XM-Generator</label>
+		<label><input type="checkbox" value="Remote v2" name="methods[]">Remote v2</label>
+		<label><input type="checkbox" value="Spooky Boost" name="methods[]">Spooky Boost</label>
+		<label><input type="checkbox" value="Sample Digitizer" name="methods[]">Sample Digitizer</label>
 		<label><input type="checkbox" value="Spooky Central" name="methods[]">Spooky Central</label>
 		<label><input type="checkbox" value="Plasma straight tube" name="methods[]">Plasma Straight tube</label>
 		<label><input type="checkbox" value="Plasma phonatron tube" name="methods[]">Plasma Phonatron tube</label>
@@ -106,10 +110,10 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 	//$date = date('d-m-Y', strtotime($_POST['dateFrom']));	
 	//$date = date('d-m-Y').date("H:i:s", strtotime("+2 hours"));
 	//$time = date("h:ia");
-	$date = date('Y-m-d');
-    // $time = date("H:i:s", strtotime("+2 hours"));
-	$datetime = $date;
-	
+	$date = date('d-m-Y');
+        $time = date("H:i:s", strtotime("+2 hours"));
+	//$datetime = $date;	
+	$datetime = $date  . " " . $time;
 	
 	// Check if form is submitted.
 	// if it is, check all the inputs, and if they are all ok, store the data in the database
