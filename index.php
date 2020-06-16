@@ -79,6 +79,7 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 		<label><input type="checkbox" value="Remote v2" name="methods[]">Remote v2</label>
 		<label><input type="checkbox" value="Spooky Boost" name="methods[]">Spooky Boost</label>
 		<label><input type="checkbox" value="Sample Digitizer" name="methods[]">Sample Digitizer</label>
+		<label><input type="checkbox" value="Laser" name="methods[]">Laser</label>
 		<label><input type="checkbox" value="Spooky2 Scalar" name="methods[]">Spooky2 Scalar/label>
 		<label><input type="checkbox" value="Spooky Central" name="methods[]">Spooky Central</label>
 		<label><input type="checkbox" value="Plasma straight tube" name="methods[]">Plasma Straight tube</label>
