@@ -2,7 +2,8 @@
 Spooky2 Treatment Diary allowing the ability to show what treatments have been done on patients/recipients.
 
 **Installation**
-"Whats required"
+
+"What's required?"
 * a website to host these files on (Will work on Apache/Nginx webservers)
 * mysql/mariadb setup with a database for spooky to import schema.sql (user/server/pass required to be setup in dbconn.inc.php)
 * extract html files & import sql schema file to create required tables for spooky on mysql db.
