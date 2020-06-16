@@ -1,32 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Spooky2 Treatment Diary</title>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta charset="UTF-8">
-<!-- Include CSS File Here -->
-<link href="style3.css" rel="stylesheet">
-</head>
-<body>
 <?php
 	
 	error_reporting(E_ALL & ~E_NOTICE);
 	// Source: https://www.w3schools.com/php/php_mysql_select.asp
-
-	// Start - Make connection to DB server
-	require("dbconn.php");
-	// End - Make connection to DB servername
-
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname)or die("No Connection");
-	// Fix by Marco Gasi special chars been displayed
-	// https://www.experts-exchange.com/questions/28967328/mysql-question-mysql-query-SET-NAMES-'utf8'.html
-	//$conn->set_charset("utf8mb4");
-	
-	// Check connection
-	if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-	} 
 
   if (isset($_GET['pageno'])) {
             $pageno = $_GET['pageno'];
@@ -36,16 +11,6 @@
         $no_of_records_per_page = 5;
         $offset = ($pageno-1) * $no_of_records_per_page;
 		//$conn->set_charset("utf8mb4");
-		
-        //$conn=mysqli_connect("localhost","my_user","my_password","my_db");
-		$conn = new mysqli($servername, $username, $password, $dbname)or die("No Connection");
-		// Fix Slovenian charcters displaying when querying db
-		mysqli_set_charset($conn, "utf8mb4");
-        // Check connection
-        if (mysqli_connect_errno()){
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-            die();
-        }
 
         $total_pages_sql = "SELECT COUNT(*) FROM diary";
         $result = mysqli_query($conn,$total_pages_sql);
@@ -89,13 +54,13 @@
    <tr>
      <td width="10">
     <ul class="pagination">
-		<li><a href="?pageno=<?php echo $total_pages; ?>"><<</a></li>
+		<li><a href="?pageno=<?php echo $total_pages; ?>">&lt;&lt;</a></li>
 		 </ul>
 		</td>
             <td width="10">
 			<ul class="pagination">
         <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-            <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>"><</a>
+            <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">&lt;</a>
         </li>
 		</ul>		
 		</td>
@@ -104,17 +69,15 @@
             <td width="10">
 			<ul class="pagination">
         <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-            <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">></a>
+            <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">&gt;</a>
         </li>
 		 </ul>
 		</td>
             <td width="10">
 			<ul class="pagination">
-		<li><a href="?pageno=1">>></a></li>
+		<li><a href="?pageno=1">&gt;&gt;</a></li>
     </ul>
 	   </td>
     </tr>
 </table>
 
-	</body> 
-</html>

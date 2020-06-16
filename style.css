@@ -3,14 +3,13 @@
 /* Above line is used for online google font */
 div.container {
 width:1185px;
-height:800px;
 margin:10px auto;
 font-family:'courier';
 text:#464646
 }
 div.top {
 width:1010px;
-height:560px;
+min-height:560px;
 float:top;
 border-radius:20px;
 border:2px solid #990;
