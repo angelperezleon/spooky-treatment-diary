@@ -14,7 +14,7 @@ Spooky2 Treatment Diary allowing the ability to show what treatments have been d
 - [x] create this todo list
 - [ ] colour highlighting of continuous running programs/presets.
 - [ ] implement bfb csv import & file attach function
-- [ ] sum total
+- [ ] sum totals
 - [ ] search functionality including notes
 - [ ] database schema and data structure upgrade on version upgrades
 - [ ] fix hyphenated text php/mysql error in Notes and other select inputs been outputed
