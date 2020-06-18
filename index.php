@@ -10,7 +10,7 @@ Credits: In the code below
 <?php
 require_once 'dbconn.inc.php';
 error_reporting(-1);
-ini_set('display_errors', '1'); // you can set this to 0 when it goes to production. PHP errors will still be logged, but not show up in the browser.
+ini_set('display_errors', '0'); // you can set this to 0 when it goes to production. PHP errors will still be logged, but not show up in the browser.
 ?>
 
 <html>
@@ -39,7 +39,7 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 		<h4>Date:
         <!-- an input type for datetime can be found here <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/datetime-local> 
              but is not yet widely supported. -->
-		<input type="date" value="<?php echo date('Y-m-d'); ?>" name="dateFrom" required>
+		<input type="date" value="<?php echo date('d-m-Y'); ?>" name="dateFrom" required>
 		</h4>
 		<h4>Recipient:
 		<input type = 'text' class = 'text' maxlength = '21'  placeholder = 'Jass' name="recipient" required>
@@ -51,6 +51,7 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 		require_once 'select-preset.inc.php';
 		?>
 		<!-- END Render entire Spooky2 Preset list from DB -->
+		
 		</h4>
 		<!-- Create new entry into Spooky2 Program list from DB -->
 		<a href="insert-preset.php">Create new Preset(s)</a> 
@@ -62,25 +63,22 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 		?>
 		<!-- END Render entire Spooky2 Program list from DB -->
 		</h4>
+		
 		<!-- Create new entry into Spooky2 Program list from DB -->
 		<a href="insert-programs.php">Create new Program(s)</a> 
 		<br><br>
 		
 		<h4>Settings:
-		<!-- 
-		<input type = 'text' pattern="^[a-zA-Z0-9\.$%&#]*$" class = 'text' maxlength = '30' placeholder = '0.02% feathering' name = 'settings' required>
-		 -->
 		<input type = 'text' pattern="[^->]+" class = 'text' maxlength = '30' placeholder = '0.02% feathering' name = 'settings' required>
 		</h4>
 		
 		<h4>Equipment used:
-		<label><input type="checkbox" value="GeneratorX" name="methods[]" checked>GeneratorX</label>
-		<label><input type="checkbox" value="XM-Generator" name="methods[]" checked>XM-Generator</label>
+		<label><input type="checkbox" value="XM-Generator" name="methods[]">XM-Generator</label>
+		<label><input type="checkbox" value="GeneratorX" name="methods[]">GeneratorX</label>
 		<label><input type="checkbox" value="Remote v2" name="methods[]">Remote v2</label>
 		<label><input type="checkbox" value="Spooky Boost" name="methods[]">Spooky Boost</label>
 		<label><input type="checkbox" value="Sample Digitizer" name="methods[]">Sample Digitizer</label>
 		<label><input type="checkbox" value="Laser" name="methods[]">Laser</label>
-		<label><input type="checkbox" value="Spooky2 Scalar" name="methods[]">Spooky2 Scalar/label>
 		<label><input type="checkbox" value="Spooky Central" name="methods[]">Spooky Central</label>
 		<label><input type="checkbox" value="Plasma straight tube" name="methods[]">Plasma Straight tube</label>
 		<label><input type="checkbox" value="Plasma phonatron tube" name="methods[]">Plasma Phonatron tube</label>
@@ -88,34 +86,23 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 		<label><input type="checkbox" value="TEN's pads" name="methods[]">TEN's pads</label>
 		<label><input type="checkbox" value="Ultra Sound" name="methods[]">Ultra Sound</label>
 		</h4>
+	
 		<!-- Notes  -->
 		<h4>Notes:
-		<!-- START
-		<input type = 'notes' class = 'text' maxlength = '100' placeholder = 'Treatment notes' name = 'notes[]'>
-		END  -->
 		<textarea class = 'textarea' cols="3" rows="3" placeholder = 'Treatment notes' name="notes"></textarea>
 		<!-- Textarea (Multiline) -->
 		</h4>
-		
+		  
 		<!-- Submit to db -->
 		<input type = 'submit' name = 'submit' value = Submit>
 
 <?php
-	// Error reporting
-    // error_reporting(E_ALL);
-	//error_reporting(-1);
-	// error_reporting(-1); ini_set('display_errors', '1');
-	
-	// header("Content-Type:text/html; charset=utf-8");
-	//Calculate Date & time
-	// https://www.w3schools.com/php7/php7_date_time.asp
-	//$date = date('d-m-Y', strtotime($_POST['dateFrom']));	
-	//$date = date('d-m-Y').date("H:i:s", strtotime("+2 hours"));
-	//$time = date("h:ia");
-	$date = date('d-m-Y');
-        $time = date("H:i:s", strtotime("+2 hours"));
-	//$datetime = $date;	
+
+	$date = date('d-m-Y', strtotime($_POST['dateFrom']));
+    $time = date("H:i:s", strtotime("+2 hours"));
+	//$datetime = $date;
 	$datetime = $date  . " " . $time;
+	
 	
 	// Check if form is submitted.
 	// if it is, check all the inputs, and if they are all ok, store the data in the database
@@ -123,14 +110,21 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 		
 		$submit_errors = false; // by default the form has not been submitted.
 		
-		// Check if date is submitted successfully 
-		if (isset($_POST["dateFrom"])) {
-			$dateFrom = $_POST["dateFrom"];
-			print "<br>&nbsp; a date of <b>$dateFrom</b> &#124;";
-		} else {
-			$submit_errors = true;
-			print "<br>&nbsp; <font color=red>Select a date first !!</font> &#124;";
-		}
+	// Check if date field is submitted successfully 
+	if(isset($_POST["submit"])) 
+	{ 
+		// Check if any option is selected 
+		if(isset($_POST["dateFrom"])) 
+		// https://www.zen-cart.com/showthread.php?204417-PHP-Warning-Invalid-argument-supplied-for-foreach()-in-update_product-php-on-line-2
+		//if(isset($_POST["dateFrom"])) && is_array($_POST['dateFrom'))
+		{ 
+			// Retrieving each selected option 
+			foreach ($_POST['dateFrom'] as $datetime) 
+				print "<br/>and date time of <b/>$datetime</b/>"; 
+		} 
+	else
+		print "<br/>Select an option first !!"; 
+	}
 		
 		// Check if recipient is submitted successfully
 		if (isset($_POST["recipient"])) {
@@ -196,6 +190,8 @@ ini_set('display_errors', '1'); // you can set this to 0 when it goes to product
 			$settings  = $conn->real_escape_string($settings);
 			$methods   = $conn->real_escape_string($methods);
 			$notes     = $conn->real_escape_string($notes);
+			//$fleupload     = $conn->real_escape_string($fleupload);
+			
 			$sql = "INSERT INTO `$dbname`.`$table` (`date`,`recipient`,`preset`,`programs`,`settings`,`method`,`notes`) VALUES ('$datetime', '$recipient', '$presetslist', '$programlist', '$settings', '$methods', '$notes')";
 			// Check the results and print the appropriate message.
 			if ($conn->query($sql) === TRUE) {
