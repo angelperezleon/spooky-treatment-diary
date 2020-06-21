@@ -24,3 +24,4 @@ Spooky2 Treatment Diary allowing the ability to show what treatments have been d
 - [ ] ability to select more than one program or preset at one time
 - [ ] future dev of replacing preset/program drop downs with a autofill box that allows multiple entries
 - [ ] Preset chain creator/selector, to group together programs into one.
+- [ ] Add column filter, filter by name for example.
