@@ -1,5 +1,5 @@
 # spooky-treatment-diary
-Spooky2 Treatment Diary allowing the ability to show what treatments have been done on patients/recipients.
+Spooky2 Treatment Diary allowing the ability record & show what treatments you have done.
 
 **Installation**
 
